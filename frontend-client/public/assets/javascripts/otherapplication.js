@@ -1,20 +1,43 @@
 $(document).ready(function(){
-  // bindEvents();
-  // $('.markdown').keyup(function() {
-  //   var liveText = $('.markdown').val();
-  //   $('.live-markdown').html(parseContent(liveText));
-  // })
-  console.log("heyyy")
+  insertAllQuestions();
 });
 
-var question = {
-    "id": 1,
-    "title": "somesnakes",
-    "content": "something",
-    "votes": 111,
-    "created_at": "2015-02-07T00:05:44.281Z",
-    "updated_at": "2015-02-07T00:20:34.238Z"
+function buildQuestion(question_obj) {
+  var template = $(".append-question").html();
+  var newQuestTemplate = Handlebars.compile(template);
+  var resultHTML = newQuestTemplate(question_obj);
+  return $(resultHTML);
 }
+
+function insertAllQuestions() {
+  console.log("hereeeee")
+  $.ajax( {
+    url: "http://localhost:3000/",
+    type: 'GET',
+    success: function(response) {
+      for(var i = 0; i < response.question.length; i++) {
+        $(".question-list").append(
+          buildQuestion(response.question[i])
+        );
+      }
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+//-----------------------------------IGNORE BELOW------------------------------------------
+
+// function buildQuestion(question_obj) {
+//   var template = $(".append-question").html();
+//   var newQuestTemplate = Handlebars.compile(template);
+//   var resultHTML = newQuestTemplate({"question_id": question_obj.id, "title": question_obj.title, "content": question_obj.content, "votes": question_obj.votes});
+//   return $(resultHTML);
+// }
+
+
+
 
 
 // function bindEvents() {

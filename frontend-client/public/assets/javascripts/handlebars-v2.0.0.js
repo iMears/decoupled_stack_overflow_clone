@@ -25,6 +25,8 @@ THE SOFTWARE.
 @license
 */
 /* exported Handlebars */
+console.log("LOADING HANDLEBARS!!!!!!!!!!!!!!!!!!!!")
+
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);

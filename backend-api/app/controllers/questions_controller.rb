@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  after_filter :cors_set_access_control_headers
 
   # before_action :get_question, except: [:index, :create, :upvote, :downvote]
   #
@@ -8,7 +9,7 @@ class QuestionsController < ApplicationController
     render json: @question
   end
 
-   def show_all_questions
+  def show_all_questions
     # http://localhost:3000/
     @api_response = HTTParty.get("https://api.github.com/zen",
             :headers => { "Authorization" => 'token ' + ENV['GITHUB_TOKEN'], 'User-Agent' => 'xyz'})
@@ -39,6 +40,13 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = 'http://localhost:4000'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+  end
+
 
   # QUESTION??: IS THERE STILL A WAY TO USE THIS?
   def question_params

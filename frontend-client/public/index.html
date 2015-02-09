@@ -8,9 +8,22 @@
 </head>
 <body>
   <h1>stackoverclone</h1>
-  <div class="append-answer">
-    <h3>{{question.title}}</h3>
-    <p>{{question.content}}</p>
+
+  <div class="question-list">
+  </div>
+
+  <div class="append-question" style="display:none">
+    <h3>{{title}}</h3>
+    <p>{{content}}</p>
+  </div>
+
+</body>
+</html>
+
+
+
+
+
     <!-- <p id="{{question_id}}">votes: {{votes}}</p> -->
    <!--  <form action="/questions/{{question_id}}/answers/{{answer_id}}/upvotes" method='POST'>
     </form>
@@ -19,6 +32,3 @@
     <form action="/questions/{{question_id}}/answers/{{answer_id}}/downvotes" method='POST'>
     </form>
     <button class="btn btn-danger btn-xs vote-btn" type='submit' value='Down Vote'>Down Vote</button> -->
-  </div>
-</body>
-</html>
